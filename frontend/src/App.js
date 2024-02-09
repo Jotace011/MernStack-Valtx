@@ -10,7 +10,7 @@ import CreateUser from './components/CreateUser';
 
 
 function App() {
-  const Auxroute = () => <CreateNote params={useParams()} />;
+  const RutaAux = () => <CreateNote params={useParams()} />;
   return (
       <Router>
         <Navigation/>
@@ -18,7 +18,7 @@ function App() {
         <div className="container p-4">
           <Routes>
             <Route path='/' exact element={<NotesList/>} />
-            <Route path='/edit/:id' element={<Auxroute />} />
+            <Route path='/edit/:id' element={<RutaAux />} />
             <Route path='/create' element={<CreateNote/>} />
             <Route path='/user' element={<CreateUser/>} />
           </Routes>
