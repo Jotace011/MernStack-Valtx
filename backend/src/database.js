@@ -6,7 +6,7 @@ const URI = process.env.MONGODB_URI ? process.env.MONGODB_URI : 'mongodb://local
 
 
 mongoose.connect(URI,{
-    useNewUrlParser: true
+   // useNewUrlParser: true
    // useCreateIndex:true
 });
 

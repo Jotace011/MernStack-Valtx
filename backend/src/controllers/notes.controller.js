@@ -19,7 +19,7 @@ notesCtrl.createNote = async (req, res) =>{
 } 
 notesCtrl.getNote = async (req, res) => {
     const note = await Note.findById(req.params.id)
-    res.json({title:'El titulo '})
+    res.json(note)
 } 
 
 notesCtrl.updateNote = async (req, res) => {
@@ -29,12 +29,12 @@ notesCtrl.updateNote = async (req, res) => {
         author,
         content
     })
-    res.json({message:'Note Actualizada'})
+    res.json({message:'Nota Actualizada'})
 }
 
 notesCtrl.deleteNote = async (req, res) => {
     await Note.findByIdAndDelete(req.params.id);
-    res.json({message:'Note Eliminada'})
+    res.json({message:'Nota Eliminada'})
 } 
 
 
