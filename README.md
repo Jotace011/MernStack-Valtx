@@ -1,8 +1,8 @@
-<h1> Stack Mern - Practica Valtx  </h1>
+<h1> Practica React </h1>
 
 <ul>
-    <li>Backend Terminado</li>
-    <li>Frontend Terminado</li>
+    <li>Reto 1 - Finalizado</li>
+    <li>Reto 2 - Proceso</li>
 </ul>
 
 
