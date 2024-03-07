@@ -2,7 +2,7 @@
 
 <ul>
     <li>Reto 1 - Finalizado</li>
-    <li>Reto 2 - Proceso</li>
+    <li>Reto 2 - Proceso hasta el video 17 (aplicando Tailwind)</li>
 </ul>
 
 
