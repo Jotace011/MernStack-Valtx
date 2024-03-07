@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-import {motion} from 'framer-motion'
+import { motion } from 'framer-motion'
 
 
-const TaskList = ({showSettings, setShowSettings}) => {
+const TaskList = ({ showSettings, setShowSettings }) => {
 
     const [newTask, setNewTask] = useState("");
     const [tasklist, setTasklist] = useState([]);
-    
+
 
     /**
      * Añade una nueva tarea a la lista
@@ -67,14 +67,14 @@ const TaskList = ({showSettings, setShowSettings}) => {
                     Task List
                 </h1>
                 <motion.button
-                    whileHover={{scale:1.1}}
-                    whileTap={{scale:0.9}}
-                    className='btn' 
-                    onClick={()=> setShowSettings(!showSettings)}>
-                    {!showSettings ? "Show Settings":"Hide Settings"}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    className='btn'
+                    onClick={() => setShowSettings(!showSettings)}>
+                    {!showSettings ? "Show Settings" : "Hide Settings"}
                 </motion.button>
             </header>
-           
+
             <div className='my-4'>
                 <input
                     className="shadow py-1 px-2 rounded-lg outline-none transition-all duration-300 
@@ -85,8 +85,8 @@ const TaskList = ({showSettings, setShowSettings}) => {
                     placeholder="New Task"
                     type="text"
                 />
-                <button 
-                    className="btn" 
+                <button
+                    className="btn"
                     onClick={addNewTask}>
                     Create Task
                 </button>
@@ -96,20 +96,25 @@ const TaskList = ({showSettings, setShowSettings}) => {
             ) : (
                 <ul>
                     {tasklist.map((item, index) => (
-                        <li key={index}>
-                            <input
+                        <label>
+                            <motion.li 
+                                initial={{x:"100vh"}} 
+                                animate={{x:0}} 
+                                key={index}>
+                                <input
 
-                                type="checkbox"
-                                // onClick={() => removeItem(index)}
-                                onClick={() => toggleCompleteItem(index)}
-                                checked={item.completed}
-                                onChange={() => { }}
-                            />
-                            <span className={`text-gray-800 ml-2 text-sm italic dark:text-gray-100
-                                            ${item.completed && "line-through"}`}>
-                                {item.task}
-                            </span>
-                        </li>
+                                    type="checkbox"
+                                    // onClick={() => removeItem(index)}
+                                    onClick={() => toggleCompleteItem(index)}
+                                    checked={item.completed}
+                                    onChange={() => { }}
+                                />
+                                <span className={`text-gray-800 ml-2 text-sm italic dark:text-gray-100
+                                                ${item.completed && "line-through"}`}>
+                                    {item.task}
+                                </span>
+                            </motion.li>
+                        </label>
                     ))}
                 </ul>
             )}
