@@ -1,0 +1,17 @@
+body{
+  margin: 0;
+}
+h1{
+  margin: 0;
+}
+
+.App {
+  padding: 20px;
+  height: 100vh;
+}
+
+.App.dark {
+  background-color: #1e1e1e;
+  color: white;
+  transition: 0.3s;
+}

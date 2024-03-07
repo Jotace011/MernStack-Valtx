@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Todo component is working correctly matches snapshot  1`] = `
+<div
+  data-testid="todo-test-1"
+>
+  <label>
+    <input
+      checked={false}
+      id="checkbox"
+      onChange={[Function]}
+      type="checkbox"
+    />
+    Pasar los tests 2
+  </label>
+</div>
+`;
