@@ -1,12 +1,18 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
-
+import { addTask, getTasks, toggleComplete } from '../../firebase/tasksController';
 
 const TaskList = ({ showSettings, setShowSettings }) => {
 
     const [newTask, setNewTask] = useState("");
     const [tasklist, setTasklist] = useState([]);
+    
+    useEffect(() => {
+        getTasks()
+            .then(tasks => setTasklist([...tasks]))
+            .catch((e) => console.log(e))
 
+    }, [])
 
     /**
      * Añade una nueva tarea a la lista
@@ -15,9 +21,15 @@ const TaskList = ({ showSettings, setShowSettings }) => {
 
     const addNewTask = () => {
         if (newTask === "") return;
-        setTasklist([...tasklist, { task: newTask, completed: false }]);
-        setNewTask("");
-        return true;
+        //añadimos nueva tarea a db
+        const task = {task: newTask, completed: false}
+        addTask(task)
+            .then(() => {
+                //cuando se añade, se muestra todo
+                return setTasklist([...tasklist, task]);
+            })
+            .catch(e => console.log(e))
+            .finally(() => setNewTask(""))
     };
 
     /**
@@ -49,9 +61,14 @@ const TaskList = ({ showSettings, setShowSettings }) => {
      */
 
     const toggleCompleteItem = (index) => {
-        let newTaskList = tasklist;
-        newTaskList[index].completed = !newTaskList[index].completed;
-        setTasklist([...newTaskList]);
+        let task = tasklist.find(t => t.id === index)
+        //Actualizar en bd el estado de la tarea
+        toggleComplete(task)
+            .then(async () => {
+                const newTaskList = await getTasks()
+                return setTasklist([...newTaskList,])
+            })
+            .catch((e) => console.log(e))
     };
 
     /**
@@ -64,7 +81,7 @@ const TaskList = ({ showSettings, setShowSettings }) => {
         <>
             <header className='flex justify-between'>
                 <h1 className='text-3xl text-sky-700 font-semibold dark:text-sky-300' >
-                    Task List
+                    Task List - hosting en Firebase
                 </h1>
                 <motion.button
                     whileHover={{ scale: 1.1 }}
@@ -105,7 +122,7 @@ const TaskList = ({ showSettings, setShowSettings }) => {
 
                                     type="checkbox"
                                     // onClick={() => removeItem(index)}
-                                    onClick={() => toggleCompleteItem(index)}
+                                    onClick={() => toggleCompleteItem(item.id)}
                                     checked={item.completed}
                                     onChange={() => { }}
                                 />
