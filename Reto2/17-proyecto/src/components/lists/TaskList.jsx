@@ -103,7 +103,7 @@ const TaskList = ({ showSettings, setShowSettings }) => {
                     type="text"
                 />
                 <button
-                    className="btn"
+                    className="btn btn-add-task"
                     onClick={addNewTask}>
                     Create Task
                 </button>
@@ -111,7 +111,7 @@ const TaskList = ({ showSettings, setShowSettings }) => {
             {isTasksEmpty() ? (
                 <p>Task List is Empty</p>
             ) : (
-                <ul>
+                <ul className='todo-list'>
                     {tasklist.map((item, index) => (
                         <label>
                             <motion.li 

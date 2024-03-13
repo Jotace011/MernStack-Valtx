@@ -8,7 +8,8 @@ import { getFirestore } from "firebase/firestore";
 
 
 
-const vapidKey = "BEvfBijzNeY5QWN8rQqOJ0EQTCIlw2o7kV4XoQ6NFuc4RZ5V0X7wgXEoKSAtRjgykdOUPt9S18ZUWFQsUrEzuH4"
+const vapidKeyProd = "BEvfBijzNeY5QWN8rQqOJ0EQTCIlw2o7kV4XoQ6NFuc4RZ5V0X7wgXEoKSAtRjgykdOUPt9S18ZUWFQsUrEzuH4"
+const vapidKeyDev = "BErWOze1ZS8MRdECKzTaDWHFY6AuDekW4UBDfBw0A7FOU6WkjdHwELVSDxsN7O465npGlfeGkvbNgUfSKTtxx5A"
 
 /* Current tokem :  fi4JPi3MC30F7UvPwn4E8t:APA91bFpwUE6usJgBEJ-XiuXIjFsO6zNPQ-YX2qB3-RBdz0cAOCmI-XbySi70au9Ym45AabkQYGS4q2u0RHNKy77JUM7BFuEwVy5gi4_18iFjjR8YCodsbwLCvvwD2tmaX8d_M3fbKmt
 */
@@ -23,11 +24,30 @@ const firebaseConfig = {
   appId: "1:754424052499:web:217211583683c35d8cb8e6"
 };
 
+const devFirebaseConfig = {
+  apiKey: "AIzaSyAkjJ69QOtcE5exBa2XWDbMmo1HnFs8wSE",
+  authDomain: "dev-tasklist-firebase-44f4f.firebaseapp.com",
+  projectId: "dev-tasklist-firebase-44f4f",
+  storageBucket: "dev-tasklist-firebase-44f4f.appspot.com",
+  messagingSenderId: "858814944446",
+  appId: "1:858814944446:web:c71abe46bc77540a297aef"
+};
+
 // Initialize Firebase
-export const app = initializeApp(firebaseConfig);
+let app ;
+if(process.env.NODE_ENV == 'production'){
+  app = initializeApp(firebaseConfig);
+} else {
+  app = initializeApp(devFirebaseConfig)
+}
+
+export {
+  app
+}
+
 export const messaging = getMessaging()
 
-getToken(messaging, {vapidKey})
+getToken(messaging, {vapidKey: process.env.NODE_ENV === 'production' ? vapidKeyProd : vapidKeyDev})
   .then(currentToken => {
     if (currentToken) {
       // Send the token to your server and update the UI if necessary

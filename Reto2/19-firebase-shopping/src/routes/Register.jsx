@@ -47,7 +47,7 @@ const Register = () => {
             <form onSubmit={handleSubmit} className='flex flex-col gap-2 max-w-sm'>
                 <input className='border border-gray-500 rounded py-1 px-2 outline-none ' placeholder='email' type='email' value={email} onChange={e => setEmail(e.target.value)} />
                 <input className='border border-gray-500 rounded py-1 px-2 outline-none ' placeholder='password' type='password' value={password} onChange={e => setPassword(e.target.value)} />
-                <button className='bg-sky-400 py-1 text-white rounded shadow'>
+                <button className='submit-button'>
                     Registrate
                 </button>
             </form>

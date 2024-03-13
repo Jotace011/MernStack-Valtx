@@ -3,12 +3,12 @@ import {  collection, addDoc, getDocs, doc, setDoc, deleteDoc } from "firebase/f
 
 //En este fichero crearemos la logica de bd para las tasks
 export const addNewTask = async task => {
-  await addDoc(collection(db, "tasks"), task)
+  await addDoc(collection(db, "task"), task)
     
 }
 
 export const getTasks = async () => {
-    const querySnapshot = await getDocs(collection(db, "tasks"));
+    const querySnapshot = await getDocs(collection(db, "task"));
     // querySnapshot.forEach((doc) => {
     // console.log(`${doc.id} => ${doc.data()}`);
     // });
@@ -22,12 +22,12 @@ export const getTasks = async () => {
 
 export const updateTask = async (task) => {
     //console.log(task)
-    await setDoc(doc(db, 'tasks', task.id),{
+    await setDoc(doc(db, 'task', task.id),{
         title: task.title,
         description: task.description
     })
 }
 
 export const deleteTask = async (id) => {
-    await deleteDoc(doc(db, 'tasks', id))
+    await deleteDoc(doc(db, 'task', id))
 }

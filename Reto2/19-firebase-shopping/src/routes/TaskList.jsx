@@ -63,7 +63,7 @@ const TaskList = () => {
                 <input 
                     type='text' 
                     placeholder='Titulo'
-                    className='border shadow outline-none focus:ring ring-sky-200 rounded px-2 py-1 w-full'
+                    className='border shadow outline-none focus:ring ring-sky-200 rounded px-2 py-1 w-full title-input'
                     value={task.title} 
                     disabled={!user}
                     onChange={(e) => setTask({...task, title: e.target.value}) }
@@ -71,7 +71,7 @@ const TaskList = () => {
                 <textarea 
                     type='text' 
                     placeholder='Descripcion'
-                    className='border shadow outline-none focus:ring ring-sky-200 rounded px-2 py-1 w-full'
+                    className='border shadow outline-none focus:ring ring-sky-200 rounded px-2 py-1 w-full desc-input'
                     value={task.description} 
                     disabled={!user}
                     onChange={(e) => setTask({...task, description: e.target.value}) }
